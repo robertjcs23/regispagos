@@ -67,7 +67,7 @@
 
         <div class="form-group">
             <label for="role" class="control-label">Rol que desempeña en el Sistema</label>
-            <input type="text" name="role" class="form-control" value="{{$empleado->role->descrip}}" readonly>
+            <input type="text" name="role" class="form-control" value="{{$empleado->role->name}}" readonly>
         </div>
         
         <br>

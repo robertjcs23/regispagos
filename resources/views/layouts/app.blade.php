@@ -23,9 +23,7 @@
     <!-- Desde Aqui -->
         <header class="fixed-top" >
         <!-- Etiqueta de cabecera, nueva usada en HTML5-->
-        <img SRC="../../images/facebook_cover_photo_1.png" alt="">
-        <img src="{{ asset('images/icono.jpg') }}" alt="">
-        <link rel="shortcut icon" type="image/png" href="{{ asset('/images/facebook_cover_photo_1.png') }}">
+
     </header>
         <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

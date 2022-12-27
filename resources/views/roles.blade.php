@@ -53,7 +53,7 @@
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <tr>
                                     <td class="table-text"><div>{{ $role->id }}</div></td>
-                                    <td class="table-text"><div>{{ $role->descrip }}</div></td>
+                                    <td class="table-text"><div>{{ $role->name }}</div></td>
                                     <td class="btn-group" role="group" aria-label="Basic mixed styles example">
                                         <form action="{{ url('roles/view')}}/{{$role->id}}" method="GET">
                                             

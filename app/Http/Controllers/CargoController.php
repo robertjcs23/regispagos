@@ -30,7 +30,7 @@ class CargoController extends Controller
 
     public function crearUpdate(Request $request, $cargo)
     {
-         $cargo->descrip = $request->descrip;
+         $cargo->descrip = ucwords($request->descrip);
          $cargo->save();
          return $cargo;
     }

@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="descrip" class="control-label">Descripción del Rol</label>
             
-            <input type="text" name="descrip" class="form-control" value="{{$role->descrip}}" readonly>
+            <input type="text" name="descrip" class="form-control" value="{{$role->name}}" readonly>
 
         </div><br>
     </form>

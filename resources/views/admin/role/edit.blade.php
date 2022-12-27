@@ -14,7 +14,7 @@
 
         <div class="form-group">
             <label for="descrip" class="control-label">Modificar Descripción del Rol</label>
-            <input type="text" name="descrip" class="form-control" value="{{$role->descrip}}" autocomplete="off" required autofocus>
+            <input type="text" name="descrip" class="form-control" value="{{$role->name}}" autocomplete="off" required autofocus>
 
         </div>
     	<div class="form-group">

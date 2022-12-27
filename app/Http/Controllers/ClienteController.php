@@ -51,11 +51,11 @@ class ClienteController extends Controller
             $cliente->cedula = $request->cedula;
 
         //$cliente->cedula = $request->cedula;
-        $cliente->nombre = $request->nombre;
-        $cliente->apellido = $request->apellido;
+        $cliente->nombre =  ucwords($request->nombre);
+        $cliente->apellido = ucwords($request->apellido);
         $cliente->telefono = $request->telefono;
-        $cliente->correo = $request->correo;
-        $cliente->direccion = $request->direccion;
+        $cliente->correo = strtolower($request->correo);
+        $cliente->direccion = strtoupper($request->direccion);
 
         $cliente->save();
         return $cliente;

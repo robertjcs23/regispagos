@@ -98,11 +98,11 @@
 
         <div class="form-group">
             <label for="role" class="control-label">Rol dentro del Sistema</label> <strong><abbr title="required">*</abbr></strong>
-            <input type="text" name="role" class="form-control" value="{{$empleado->role->descrip}}" disabled>
+            <input type="text" name="role" class="form-control" value="{{$empleado->role->name}}" disabled>
             <select for="role" name='role' id='parroquia_id' class="form-select" required>
                 <option value=""> -- Selecciona -- </option>
                 @foreach ($roles as $role)
-                    <option value="{{ $role['id'] }}">{{ $role['descrip'] }}</option>
+                    <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
                 @endforeach
             </select>
         </div>

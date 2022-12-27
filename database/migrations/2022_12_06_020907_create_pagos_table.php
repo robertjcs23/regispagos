@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('empleado_id');
             $table->foreign('empleado_id')->references('id')->on('empleados');
 
-            $table->timestamps('fecha_r');
+            $table->date('fecha_r');
             $table->date('fecha_p');
             $table->string('referencia')->unique();
             $table->decimal('monto',12,2);

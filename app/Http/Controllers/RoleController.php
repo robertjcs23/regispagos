@@ -30,7 +30,8 @@ class RoleController extends Controller
 
     public function crearUpdate(Request $request, $role)
     {
-         $role->descrip = $request->descrip;
+         $role->name = ucwords($request->descrip);
+         $role->guard_name = ucwords($request->descrip);
          $role->save();
          return $role;
     }

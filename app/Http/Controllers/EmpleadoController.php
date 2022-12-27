@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Empleado\StoreRequest;
 use App\Http\Requests\Empleado\UpdateRequest;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 // Modelos
 use App\Models\Empleado;
@@ -14,7 +16,8 @@ use App\Models\Estado;
 use App\Models\Ciudad;
 use App\Models\Parroquia;
 use App\Models\Cargo;
-use App\Models\Role;
+//use App\Models\Role;
+use App\Models\User;
 
 class EmpleadoController extends Controller
 {
@@ -25,7 +28,7 @@ class EmpleadoController extends Controller
         $ciudads = Ciudad::orderBy('descrip','asc')->get();
         $parroquias = Parroquia::orderBy('descrip','asc')->get();
         $cargos = Cargo::orderBy('descrip','asc')->get();
-        $roles = Role::orderBy('descrip','asc')->get();
+        $roles = Role::orderBy('name','asc')->get();
         $empleados = Empleado::all();
 
         return view('empleados',
@@ -60,41 +63,13 @@ class EmpleadoController extends Controller
          else{
             $empleado->cedula = $request->cedula;}
 
-        // if ($request->pais_id==!null)
-        //     $empleado->pais_id = $request->pais;
-        // else
-        //     $empleado->pais_id = $empleado->pais_id;    
-
-        // if ($request->estado_id==null)
-        //     $empleado->estado_id = $empleado->estado_id;
-        //  else
-        //     $empleado->estado_id = $request->estado;
-
-        // if ($request->ciudad_id==null)
-        //     $empleado->ciudad_id = $empleado->ciudad_id;
-        //  else
-        //     $empleado->ciudad_id = $request->municipio;
-
-        // if ($request->parroquia_id==null)
-        //     $empleado->parroquia_id = $empleado->parroquia_id;
-        //  else
-        //     $empleado->parroquia_id = $request->parroquia;
-
-        // if ($request->cargo_id==null)
-        //     $empleado->cargo_id = $empleado->cargo_id;
-        //  else
-        //     $empleado->cargo_id = $request->cargo;
-
-        // if ($request->role_id==null)
-        //     $empleado->role_id = $empleado->role_id;
-        //  else
-        //     $empleado->role_id = $request->role;
-        
-        $empleado->nombre = $request->nombre;
-        $empleado->apellido = $request->apellido;
+        $empleado->nombre = ucwords($request->nombre);
+        $empleado->apellido = ucwords($request->apellido);
         $empleado->telefono = $request->telefono;
-        $empleado->correo = $request->correo;
-        $empleado->direccion = $request->direccion;
+        $empleado->correo = strtolower($request->correo);
+        $empleado->direccion = strtoupper($request->direccion);
+
+        $user->assignRole($request->role);
 
         $empleado->save();
         return $empleado;
@@ -113,7 +88,7 @@ class EmpleadoController extends Controller
         $ciudads = Ciudad::orderBy('descrip','asc')->get();
         $parroquias = Parroquia::orderBy('descrip','asc')->get();
         $cargos = Cargo::orderBy('descrip','asc')->get();
-        $roles = Role::orderBy('descrip','asc')->get();
+        $roles = Role::orderBy('name','asc')->get();
 
         $empleado = Empleado::where('id', $id)->firstOrFail();
         return view('admin.empleado.edit', compact('empleado','pais','estados', 'ciudads', 'parroquias', 'cargos', 'roles'));

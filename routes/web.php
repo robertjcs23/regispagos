@@ -55,10 +55,6 @@ Route::put(uri: 'clientes/edit/{cliente_id}', action: [App\Http\Controllers\Clie
 Route::delete(uri: 'clientes/{cliente}', action: [App\Http\Controllers\ClienteController::class, 'destroy' ])->name( name: 'clientes.delete');
 
 
-// Route::delete('/clientes/$id', function ($id) {
-//     //
-// });
-
 //  Route::group(['middleware' => 'auth'], function () {
 // 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 // 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
@@ -72,8 +68,12 @@ Route::delete(uri: 'clientes/{cliente}', action: [App\Http\Controllers\ClienteCo
 
 Auth::routes();
 
-Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+##########################
+/// Seccion de Home ///
 
+//Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 ##########################
 /// Seccion de cargos ///

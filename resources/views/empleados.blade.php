@@ -99,7 +99,7 @@
             <select for="role" name='role' id='parroquia_id' class="form-select" required>
                 <option value=""> -- Selecciona -- </option>
                 @foreach ($roles as $role)
-                    <option value="{{ $role['id'] }}">{{ $role['descrip'] }}</option>
+                    <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
                 @endforeach
             </select>
         </div>
