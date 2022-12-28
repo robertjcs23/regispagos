@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cargo;
-use App\Http\Requests\StoreCargoRequest;
-use App\Http\Requests\UpdateCargoRequest;
 use App\Http\Requests\Cargo\UpdateRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+
 
 class CargoController extends Controller
 {
     public function index()
     {
-        $cargos = Cargo::all();
-        return view('cargos', [ 'page_title' => 'Cargos', 'cargos' => $cargos ]);
+        //sin paginacion
+        // $cargos = Cargo::all();
+        // return view('cargos', [ 'page_title' => 'Cargos', 'cargos' => $cargos->paginate(3) ]);
+
+        //con paginacion
+        $cargos = Cargo::paginate(3);
+        return view('cargos', [ 'page_title' => 'Cargos', 'cargos' => $cargos]);
     }
 
     public function create()

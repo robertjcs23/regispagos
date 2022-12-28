@@ -14,7 +14,8 @@
     <link href="C:\xampp\htdocs\regispagos\node_modules\bootstrap-icons\icons" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/js/app.js'])
+    <!-- @vite(['resources/js/app.js']) -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         <img SRC="{{ asset('images/facebook_cover_photo_1.png') }}" alt="">
         <img src="{{ asset('images/icono.jpg') }}" alt="">
         <link rel="shortcut icon" type="image/png" href="{{ asset('/images/facebook_cover_photo_1.png') }}">
@@ -187,7 +188,7 @@
 
         <!-- Etiqueta de navegación-->
         <a class="navbar-brand">RegisPagos</a>
-        <a class="nav-link active" aria-current="page" href="{{url('home')}}">Home</a> <!-- hipervínculos href, es la ubicación de los archivos-->
+        <a class="nav-link active" aria-current="page" href="{{url('dashboard')}}">Panel</a> <!-- hipervínculos href, es la ubicación de los archivos-->
         <a class="nav-link active" aria-current="page" href="{{url('cargos')}}">Cargos</a>
         <a class="nav-link active" aria-current="page" href="{{url('clientes')}}">Clientes</a>
         <a class="nav-link active" aria-current="page" href="{{url('empleados')}}">Empleados</a>

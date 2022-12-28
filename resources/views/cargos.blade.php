@@ -33,7 +33,7 @@
 
 
 <!--     //Consulta de Cargos -->
-<div class="col-sm-offset-3 col-sm-6"><br><br><br><br>
+<div class="col-sm-offset-3 col-sm-4"><br><br><br><br>
     <div class="col-md-12">
         @if (count($cargos) > 0 )
             <div class="panel panel-default">
@@ -101,8 +101,12 @@
                                 </tr>
                             </div>
                             @endforeach
+
                         </tbody>
-                    </table>  
+                    </table>
+                        <div class=" d-flex justify-content-end">
+                            {!! $cargos->links() !!}
+                        </div>
                 </div>
             </div>
         @endif

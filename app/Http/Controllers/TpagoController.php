@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tpago;
-use App\Http\Requests\StoreTpagoRequest;
-use App\Http\Requests\UpdateTpagoRequest;
 use App\Http\Requests\Tpago\UpdateRequest;
+use App\Http\Requests\Tpago\StoreRequest;
 use Illuminate\Http\Request;
 
 class TpagoController extends Controller
 {
     public function index()
     {
-        $tpagos = Tpago::all();
+        $tpagos = Tpago::paginate(3);
         return view('tpagos', [ 'page_title' => 'Tpagos', 'tpagos' => $tpagos ]);
     }
 
@@ -30,7 +29,7 @@ class TpagoController extends Controller
 
     public function crearUpdate(Request $request, $tpago)
     {
-         $tpago->descrip = $request->descrip;
+         $tpago->descrip = ucwords($request->descrip);
          $tpago->save();
          return $tpago;
     }

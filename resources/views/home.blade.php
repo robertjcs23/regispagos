@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',[ 'page_title' => 'Home de Usuario'])
 
 @section('content')
 <div class="container">
@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                        <p>Bienvenido</p>
-                    {{ __('You are logged in!') }}
+
+                    {{ Auth::user()->name }},
+                    {{ __('Usted ha iniciado Sesión Correctamente!!') }}
                 </div>
             </div>
         </div>

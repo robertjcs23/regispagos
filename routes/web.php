@@ -75,6 +75,8 @@ Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
 ##########################
 /// Seccion de cargos ///
 
@@ -145,3 +147,6 @@ Route::get(uri: 'pagos/view/{id}', action: [App\Http\Controllers\PagoController:
 Route::get(uri: 'pagos/{pago_id}/edit', action: [App\Http\Controllers\PagoController::class, 'edit' ])->name( name: 'pagos.edit');//Fn show para editar
 
 Route::put(uri: 'pagos/edit/{pago_id}', action: [App\Http\Controllers\PagoController::class, 'update' ])->name( name: 'pagos.update');// Fn actualizar
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

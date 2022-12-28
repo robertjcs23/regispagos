@@ -33,7 +33,7 @@
 
 
 <!--     //Consulta de Tpagos -->
-<div class="col-sm-offset-3 col-sm-6"><br><br><br><br>
+<div class="col-sm-offset-3 col-sm-4"><br><br><br><br>
     <div class="col-md-12">
         @if (count($tpagos) > 0 )
             <div class="panel panel-default">
@@ -102,7 +102,12 @@
                             </div>
                             @endforeach
                         </tbody>
-                    </table>  
+                    </table>
+
+                        <div class=" d-flex justify-content-end">
+                            {!! $tpagos->links() !!}
+                        </div>
+
                 </div>
             </div>
         @endif
