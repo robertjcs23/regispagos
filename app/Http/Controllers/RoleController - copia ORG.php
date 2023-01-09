@@ -8,24 +8,8 @@ use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Requests\Role\UpdateRequest;
 use Illuminate\Http\Request;
 
-//Agregamos
-//use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\DB;
-
-
-
 class RoleController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:ver-rol | crear-rol | editar-rol | borrar-rol', ['only'=>['index']]);
-        $this->middleware('permission:crear-rol', ['only'=>['crearte','store']]);
-        $this->middleware('permission:editar-rol', ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-rol', ['only'=>['destroy']]);
-    }
-
-
     public function index()
     {
         $roles = Role::all();
@@ -34,8 +18,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        $permisos = Permission::get();
-        return view('admin.role.create', compact('permisos'));
+        return view('admin.role.create');
     }
 
     public function store(Request $request)
@@ -48,7 +31,7 @@ class RoleController extends Controller
     public function crearUpdate(Request $request, $role)
     {
          $role->name = ucwords($request->descrip);
-         $role->guard_name = ('rp');
+         $role->guard_name = ucwords($request->descrip);
          $role->save();
          return $role;
     }

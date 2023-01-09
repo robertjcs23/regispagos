@@ -10,6 +10,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="{{asset('assets/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="C:\xampp\htdocs\regispagos\node_modules\bootstrap-icons\icons" rel="stylesheet">
 
@@ -181,8 +182,6 @@
 </div>
 
 <!-- Hasta aqui Prueba de menu lateral -->
-
-
 
 
 
