@@ -203,9 +203,9 @@
         <a class="nav-link active" aria-current="page" href="{{url('clientes')}}">Clientes</a>
         <a class="nav-link active" aria-current="page" href="{{url('empleados')}}">Empleados</a>
         <a class="nav-link active" aria-current="page" href="{{url('tpagos')}}">TPagos</a>
+        <a class="nav-link active" aria-current="page" href="{{url('users')}}">Usuarios</a>
         <a class="nav-link active" aria-current="page" href="{{url('pagos')}}">Pagos</a>
         <a class="nav-link active" aria-current="page" href="{{url('roles')}}">Roles</a>
-        <a class="nav-link active" aria-current="page" href="">Inscríbete</a>
     </nav>
     <!-- Hasta Aqui -->
 

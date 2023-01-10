@@ -20,6 +20,7 @@ use App\Models\Cargo;
 use App\Models\Tpago;
 use App\Models\Role;
 use App\Models\Pago;
+use App\Models\User;
 
 
 ##########################
@@ -157,14 +158,14 @@ Route::put(uri: 'pagos/edit/{pago_id}', action: [App\Http\Controllers\PagoContro
 ##########################
 /// Seccion de users ///
 
-Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('users', [UserController::class, 'index'])->name('users');
 
-// Route::post(uri: 'users', action: [App\Http\Controllers\UserController::class, 'store' ])->name( name: 'users.store');//Fn crear
+Route::post(uri: 'users', action: [App\Http\Controllers\UserController::class, 'store' ])->name( name: 'users.store');//Fn crear
 
-// Route::get(uri: 'users/view/{user_id}', action: [App\Http\Controllers\UserController::class, 'show' ])->name( name: 'user.show'); //Fn ver
+Route::get(uri: 'users/view/{user_id}', action: [App\Http\Controllers\UserController::class, 'show' ])->name( name: 'user.show'); //Fn ver
 
 Route::get(uri: 'users/{id}/edit', action: [App\Http\Controllers\UserController::class, 'edit' ])->name( name: 'users.edit');//Fn show para editar
 
-// Route::put(uri: 'users/edit/{user_id}', action: [App\Http\Controllers\UserController::class, 'update' ])->name( name: 'users.update');//Fn editar
+Route::put(uri: 'users/edit/{user_id}', action: [App\Http\Controllers\UserController::class, 'update' ])->name( name: 'users.update');//Fn editar
 
-// Route::delete(uri: 'users/{user}', action: [App\Http\Controllers\UserController::class, 'destroy' ])->name( name: 'users.delete'); //Fn borrar
+Route::delete(uri: 'users/{user}', action: [App\Http\Controllers\UserController::class, 'destroy' ])->name( name: 'users.delete'); //Fn borrar

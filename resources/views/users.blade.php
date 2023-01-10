@@ -1,49 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="col-sm-offset-3 col-sm-6">
-    
     <div class="panel-body">
     	@include('common.errors')
     </div>
 
     <div class="panel-heading">
-        <h3>Registro de Empleado</h3>
+        <h3>Registro de Usuario</h3>
     </div>
 
-    <form class="row g-3" action="{{ url('users') }}" method="POST">
+    <form class="row g-3" action="{{ route('users') }}" method="POST">
     	{{ csrf_field() }}
     	
     	<div class="form-floating mb-3">
-    		<input type="text" id="floatingInput" name="cedula" class="form-control" autocomplete="off" placeholder="12345678" maxlength="8" minlength="6" onkeypress="return event.charCode>=48 && event.charCode<=57" required>
-            <label for="cedula" class="control-label">Cédula</label>
+    		<input type="text" id="floatingInput" name="name" class="form-control text-capitalize" autocomplete="off" placeholder="string" maxlength="40" minlength="3" required>
+            <label for="name" class="control-label">Nombre</label>
     	</div>
 
     	<div class="form-floating mb-3">
-    		<input type="text" id="floatingInput" name="nombre" class="form-control text-capitalize" autocomplete="off" placeholder="string" maxlength="40" minlength="3" required>
-            <label for="nombre" class="control-label">Nombres</label>
-    	</div>
-
-    	<div class="form-floating mb-3">
-    		<input type="text" id="floatingInput" name="apellido" class="form-control text-capitalize" autocomplete="off" placeholder="string" maxlength="40" minlength="3" required>
-            <label for="apellido" class="control-label">Apellidos</label>
-    	</div>
-
-    	<div class="form-floating mb-3">
-    		<input type="text" id="floatingInput" name="telefono" class="form-control" autocomplete="off" placeholder="04xx1234567" maxlength="11" minlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" required>
-            <label for="telefono" class="control-label">Teléfono</label>
-    	</div>
-
-
-        <div class="form-floating mb-3">
-            <input type="text" id="floatingInput" name="direccion" class="form-control text-uppercase" autocomplete="off" placeholder="string" maxlength="200">
-            <label for="direccion" class="control-label">Dirección Detallada</label>
-        </div>
-
-    	<div class="form-floating mb-3">
-            <input type="text" id="floatingInput"  name="correo" class="form-control text-lowercase" autocomplete="off" placeholder="correo@gmail.com" ondrop="return false;" onpaste="return false;" maxlength="60">
+            <input type="email" id="floatingInput"  name="email" class="form-control text-lowercase" autocomplete="off" placeholder="email@gmail.com" ondrop="return false;" onpaste="return false;" maxlength="60">
             <label for="floatingInput">Correo Electrónico</label>
         </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" id="floatingInput"  name="password" class="form-control text-lowercase" autocomplete="off" ondrop="return false;" onpaste="return false;" maxlength="60">
+            <label for="floatingInput">Contraseña</label>
+        </div>
+
+<!--         <div class="row mb-3">
+            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+            <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+            <div class="col-md-6">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            </div>
+        </div> -->
 
     	<div class="form-group">
     		<button type="submit" class="btn btn-outline-primary">
@@ -71,10 +77,7 @@
                         <thead>
 
                             <th>ID</th>
-                            <th>Cédula</th>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Teléfono</th>
+                            <th>Nombre</th>
                             <th>Correo</th>
 
                             <th>Acción</th>
@@ -84,11 +87,9 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td class="table-text"><div>{{ $user->id }}</div></td>
-                                    <td class="table-text"><div>{{ $user->cedula }}</div></td>
-                                    <td class="table-text"><div>{{ $user->nombre }}</div></td>
-                                    <td class="table-text"><div>{{ $user->apellido }}</div></td>
-                                    <td class="table-text"><div>{{ $user->telefono }}</div></td>
-                                    <td class="table-text"><div>{{ $user->correo }}</div></td>
+                                    <td class="table-text"><div>{{ $user->name }}</div></td>
+                                    <td class="table-text"><div>{{ $user->email }}</div></td>
+                                    
                                     <td class="btn-group" role="group" aria-label="Basic mixed styles example">
                                         <form action="{{ url('users/view')}}/{{$user->id}}" method="GET">
                                             
@@ -137,6 +138,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                        <div class=" d-flex justify-content-end">
+                            {!! $users->links() !!}
+                        </div>
                 </div>
             </div>
         @endif
