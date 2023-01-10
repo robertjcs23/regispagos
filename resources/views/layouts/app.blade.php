@@ -157,6 +157,17 @@
 
     <div class="dropdown mt-3">
       <button class="btn btn-secondary dropdown-toggle gap-2 col-6 mx-aut" type="button" data-bs-toggle="dropdown">
+        Usuarios
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Home de Pagos</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+
+    <div class="dropdown mt-3">
+      <button class="btn btn-secondary dropdown-toggle gap-2 col-6 mx-aut" type="button" data-bs-toggle="dropdown">
         Pagos
       </button>
       <ul class="dropdown-menu">
