@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app',[ 'page_title' => 'Roles'])
 
 @section('content')
 
@@ -11,15 +11,37 @@
         <h3>Registro de Rol</h3>
     </div>
 
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form class="row g-3" action="{{ route('roles.store') }}" method="POST">
     	{{ csrf_field() }}
         {{ method_field('POST') }}  	
 
         <div class="form-floating mb-3">
-            <input type="text" id="floatingInput" name="descrip" class="form-control text-capitalize" autocomplete="off" required autofocus>
-            <label for="descrip" class="control-label" required>Descripción del Rol</label>
+            <input type="text" id="floatingInput" name="name" class="form-control text-capitalize" autocomplete="off" required autofocus>
+            <label for="name" class="control-label" required>Descripción del Rol</label>
         </div>
-    	<div class="form-group">
+    	
+            @foreach($permission as $value)
+
+            <div class="form-check">
+              <input class="form-check-input" name="permission" type="checkbox" value="{{$value->id}}" id="flexCheckDefault">
+                <label for="permission" name="permission" class="control-label" required>{{$value->name}}</label>
+            </div>
+            <br/>
+
+            @endforeach
+
+        <div class="form-group">
     		<button type="submit" class="btn btn-outline-primary">
     			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -102,7 +124,12 @@
                             </div>
                             @endforeach
                         </tbody>
-                    </table>  
+                    </table>
+
+                        <div class=" d-flex justify-content-end">
+                            {!! $roles->links() !!}
+                        </div>
+
                 </div>
             </div>
         @endif

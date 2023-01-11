@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Requests\Role\UpdateRequest;
 use Illuminate\Http\Request;
 
 //Agregamos
-//use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +17,7 @@ class RoleController extends Controller
     function __construct()
     {
         $this->middleware('permission:ver-rol | crear-rol | editar-rol | borrar-rol', ['only'=>['index']]);
-        $this->middleware('permission:crear-rol', ['only'=>['crearte','store']]);
+        $this->middleware('permission:crear-rol', ['only'=>['create','store']]);
         $this->middleware('permission:editar-rol', ['only'=>['edit','update']]);
         $this->middleware('permission:borrar-rol', ['only'=>['destroy']]);
     }
@@ -28,27 +25,32 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = Role::all();
-        return view('roles', [ 'page_title' => 'Roles', 'roles' => $roles ]);
+        $roles = Role::paginate(3);
+        $permission = Permission::get();
+        return view('roles', [ 'page_title' => 'Roles', 'roles' => $roles ], compact('permission', 'roles'));
     }
 
     public function create()
     {
-        $permisos = Permission::get();
-        return view('admin.role.create', compact('permisos'));
+        return view('admin.role.create');
     }
 
     public function store(Request $request)
     {
         $role = new Role;
         $role = $this->crearUpdate($request, $role);
-        return redirect('roles');
+
+        return redirect('roles')
+                        ->with('success','Role created successfully');
     }
 
     public function crearUpdate(Request $request, $role)
     {
-         $role->name = ucwords($request->descrip);
-         $role->guard_name = ('rp');
+         $role->name = ucwords($request->name);
+         $role->guard_name = ('web');
+         //$role->syncPermissions($request->permissions);
+         //$role->syncPermissions($permissions);
+         $role->syncPermissions($request->input('permission'));
          $role->save();
          return $role;
     }
@@ -76,7 +78,8 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return back()->with('succes','Role eliminado satisfactoriamente');
+        //return back()->with('succes','Role eliminado satisfactoriamente');
+        return redirect('roles'); 
     }
 
     public function view($role_id)
